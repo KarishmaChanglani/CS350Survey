@@ -1,0 +1,11 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = true
+	ignorecase = true
+[remote "SurveyCS350"]
+	url = https://github.com/KarishmaChanglani/SurveyCS350.git
+	fetch = +refs/heads/*:refs/remotes/SurveyCS350/*
+[remote "origin"]
+	url = https://github.com/KarishmaChanglani/CS350Survey.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
