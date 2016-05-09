@@ -1,7 +1,6 @@
-{ Name: "", Questions:[{ prompt : null
-, choices : [{ choiceText : True,choiceIndex : 1}
-,{ choiceText : False,choiceIndex : 2}
-]},{ prompt : null
-, choices : [{ choiceText : True,choiceIndex : 1}
-,{ choiceText : False,choiceIndex : 2}
-]}]}
+{ Name: "", Questions:[{ type: "T/F",prompt : "prompt"
+, choices : [{ choiceText : "True",choiceIndex : 1}
+,{ choiceText : "False",choiceIndex : 2}
+]},{ type: "MCQ",prompt : "promp"
+, choices : [{ choiceText : "promp",choiceIndex : 1}
+]},{ type: "Short", prompt: promp},{ type: "Essay", prompt: null},{ type: "Ranking", prompt: prompt, Columns: [{ column1: "1",  column2: "p1"},{ column1: "2",  column2: "p2"},{ column1: "3",  column2: "p3"}]},{ type: "Matching", prompt: prop, Columns: [{ column1: "1",  column2: "one"},{ column1: "",  column2: "p2"}]}]}

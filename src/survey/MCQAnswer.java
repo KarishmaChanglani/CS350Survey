@@ -25,7 +25,7 @@ public class MCQAnswer implements Answer {
 
 	@Override
 	public String jsonPrint() {
-		return "{ choiceText : "+getChoiceText()+","+"choiceIndex : "+ getChoiceIndex() +"}";
+		return "{ choiceText : \""+getChoiceText()+"\","+"choiceIndex : "+ getChoiceIndex() +"}";
 	}
 	public String getChoiceText()
 	{

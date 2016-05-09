@@ -14,8 +14,7 @@ public class RankingQuestion extends MatchingQuestion {
 
 	@Override
 	public void setPrompt(String prompt) {
-		this.prompt = prompt;
-		
+		this.prompt = prompt;		
 	}
 
 	@Override
@@ -26,7 +25,25 @@ public class RankingQuestion extends MatchingQuestion {
 	@Override
 	public String jsonPrint()
 	{
-		return "";
+		String output = "{ type: \"Ranking\", prompt: "+getPrompt();
+		output += ", Columns: [";
+		for (int i =0; i < column1.size(); i++)
+		{
+			
+			output += "{ column1: \""+ this.column1.get(i) + "\"," ;
+			output += "  column2: \""+ this.column2.get(i) + "\"}";
+			if (i < column1.size() - 1)
+			{
+				output += ",";
+			}
+		}
+		output += "]";
+		if(correctAnswer != null)
+		{
+			output += ", correctAnswer:" + correctAnswer.jsonPrint(); 
+		}
+		output += "}";
+		return output;
 	}
 		
 }

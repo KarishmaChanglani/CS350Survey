@@ -25,6 +25,7 @@ public class Test extends Survey {
 							String cText = reader.nextLine();
 							System.out.println("Choice Int: ");
 							int cIndex = reader.nextInt();
+							reader.nextLine();
 							System.out.println("Enter Y to add more choices, Enter N to finish this question");
 							String toContinue = reader.nextLine();
 							choices.add(new MCQAnswer(cIndex, cText));
@@ -150,6 +151,7 @@ public class Test extends Survey {
 						String cText = reader.nextLine();
 						System.out.println("Choice Int: ");
 						int cIndex = reader.nextInt();
+						reader.nextLine();
 						Answer correctAnswer = new MCQAnswer(cIndex, cText);
 						q = new TAndFQuestion(prompt, correctAnswer);
 		}break;

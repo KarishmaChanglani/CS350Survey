@@ -51,8 +51,8 @@ public class MatchingAnswer implements Answer {
 		    }
 			String key = entry.getKey();
 		    String value = entry.getValue();
-		    output += "{ column1: "+ key + "," ;
-			output += "  column2: "+ value + "}";
+		    output += "{ column1: \""+ key + "\"," ;
+			output += "  column2: \""+ value + "\"}";
 		}
 		output += "]";
 		output += "}";

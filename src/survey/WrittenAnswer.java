@@ -29,8 +29,8 @@ public class WrittenAnswer implements Answer {
 
 	@Override
 	public String jsonPrint() {
-		String output = "( text: "+getText();
-			   output += "characterLength: "+ getLength();
+		String output = "{ text: \""+getText()+"\"";
+			   output += ", characterLength: "+ getLength();
 			   output += "}";
 		return output;
 	}

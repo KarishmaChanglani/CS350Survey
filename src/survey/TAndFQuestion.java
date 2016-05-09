@@ -14,7 +14,6 @@ public class TAndFQuestion extends MCQQuestion  {
 	}
 
 	public TAndFQuestion() {
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -25,6 +24,35 @@ public class TAndFQuestion extends MCQQuestion  {
 	@Override
 	public String getPrompt() {
 		return prompt;
+	}
+	@Override
+	public String jsonPrint() {
+		String output = "{ type: \"T/F\","
+				+ "prompt : \"";
+		output += getPrompt()+"\"\n"; 
+		output += ", choices : [";
+		int i = 0; 
+		for(Answer a: choices)
+		{
+			if (i != 0)
+			{
+				output += ",";
+			}
+			else 
+			{
+				i++;
+			}
+			output += a.jsonPrint() +"\n";
+		}
+
+		output += "]";
+		if (correctAnswer != null)
+		{
+			output += ", correctAnswer: ";
+			output += correctAnswer.jsonPrint() ;
+		}
+		output += "}";
+		return output;
 	}
 
 }

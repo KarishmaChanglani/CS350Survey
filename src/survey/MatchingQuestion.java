@@ -62,8 +62,8 @@ public class MatchingQuestion implements Question {
 		for (int i =0; i < column1.size(); i++)
 		{
 			
-			output += "{ column1: "+ this.column1.get(i) + "," ;
-			output += "  column2: "+ this.column2.get(i) + "}";
+			output += "{ column1: \""+ this.column1.get(i) + "\"," ;
+			output += "  column2: \""+ this.column2.get(i) + "\"}";
 			if (i < column1.size() - 1)
 			{
 				output += ",";

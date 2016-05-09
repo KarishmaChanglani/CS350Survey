@@ -43,7 +43,7 @@ public class MCQQuestion implements Question {
 
 	@Override
 	public String jsonPrint() {
-		String output = "{ type: \"MCQ\""
+		String output = "{ type: \"MCQ\","
 				+ "prompt : \"";
 		output += getPrompt()+"\"\n"; 
 		output += ", choices : [";
