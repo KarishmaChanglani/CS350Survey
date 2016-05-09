@@ -4,19 +4,20 @@ public class EssayQuestion extends ShortQuestion {
 
 	String prompt;
 	public EssayQuestion(String prompt) {
-		// TODO Auto-generated constructor stub
+		super(prompt);
+	}
+
+	public EssayQuestion() {
 	}
 
 	@Override
 	public String pprint() {
-		// TODO Auto-generated method stub
-		return "";
+		return prompt;
 	}
 
 	@Override
 	public String jsonPrint() {
-		// TODO Auto-generated method stub
-		return "";
+		return "{ type: \"Essay\", prompt: "+getPrompt()+"}";
 	}
 
 	@Override

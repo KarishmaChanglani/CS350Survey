@@ -1,5 +1,10 @@
 package survey;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class MainProgram {
@@ -14,12 +19,26 @@ public class MainProgram {
 		{
 			return new Survey();
 		}
+		return null;
 	}
 	
-	public static Survey loadSurvey(String path)
+	public static Survey loadSurvey(String choice, String path) throws IOException
 	{ 
-		Survey surv = new Survey();
-		/*TODO: Add loading code */
+		System.out.println("Entered this");
+		Survey surv = createSurvey(choice);
+		BufferedReader in; 
+		in = new BufferedReader(new FileReader(path));
+		String jsonString = "";
+		String line = in.readLine();
+		while(line != null)
+		{
+			jsonString += line;
+			line = in.readLine();
+		}		
+		JsonParser jsonParser = new JsonParser();
+		JsonObject jo = (JsonObject)jsonParser.parse(jsonString);
+		surv.load(jo);
+		in.close();
 		return surv;
 	}
 	
@@ -58,11 +77,11 @@ public class MainProgram {
 		System.out.println("3. Add a new short answer question");
 		System.out.println("4. Add a new essay question");
 		System.out.println("5. Add a new ranking question");
-		System.out.println("6. Add a new marching question");
+		System.out.println("6. Add a new matching question");
 		System.out.println("7. Quit");
 		System.out.println("8. Go back to previous menu");
 	}
-	public static void main(String args[])
+	public static void main(String args[]) throws IOException
 	{
 
 		Scanner reader = new Scanner(System.in);
@@ -124,11 +143,11 @@ public class MainProgram {
 					 break;
 			case 2:  System.out.println("Please enter the path of the file from which to load the survey");
 					 String pathLoad = reader.next();
-					 s = loadSurvey(pathLoad); 
+					 s = loadSurvey(menu1Choice, pathLoad); 
 					 break; 
 			case 3:  displaySurvey(s);
 					 break; 
-			case 4:  System.out.println("Please enter the path where you want to the survey");
+			case 4:  System.out.println("Please enter the path where you want to save the survey");
 					 String pathSave = reader.next();
 					 saveSurvey(s, pathSave);
 					 break;

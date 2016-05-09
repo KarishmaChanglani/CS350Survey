@@ -1,26 +1,20 @@
 package survey;
 
-public class TAndFQuestion extends MCQQuestion  {
+import java.util.ArrayList;
 
-	String prompt;
-	Answer[] choices = {new MCQAnswer(1, "T"), new MCQAnswer(2, "F")};
+public class TAndFQuestion extends MCQQuestion  {
 	
 	public TAndFQuestion(String prompt, Answer correctAnswer) {
-		this.prompt = prompt;
-		this.correctAnswer = correctAnswer;
+		super(prompt, correctAnswer);
+		Answer TrueAnswer = new MCQAnswer(1, "True");
+		Answer FalseAnswer = new MCQAnswer(2, "False");
+		choices = new ArrayList<Answer>();
+		this.choices.add(0, TrueAnswer);
+		this.choices.add(1, FalseAnswer);
 	}
 
-	@Override
-	public String pprint() {
-		// TODO Auto-generated method stub
-		return "";
-		
-	}
-
-	@Override
-	public String jsonPrint() {
-		// TODO Auto-generated method stub
-		return "";
+	public TAndFQuestion() {
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override

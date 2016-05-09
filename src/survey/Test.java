@@ -28,9 +28,13 @@ public class Test extends Survey {
 							System.out.println("Enter Y to add more choices, Enter N to finish this question");
 							String toContinue = reader.nextLine();
 							choices.add(new MCQAnswer(cIndex, cText));
-							if(toContinue == "Y")
+							if(toContinue.equals("Y"))
 							{
 								exitChoices = false;
+							}
+							else
+							{
+								exitChoices = true;
 							}
 						}while(exitChoices == false);
 						System.out.println("Please the correct choice and choice index");
@@ -52,9 +56,13 @@ public class Test extends Survey {
 							column2.add(reader.nextLine());
 							System.out.println("Enter Y to add more choices, Enter N to finish this question");
 							String toContinue = reader.nextLine();
-							if(toContinue == "Y")
+							if(toContinue.equals("Y"))
 							{
 								exitChoices = false;
+							}
+							else 
+							{
+								exitChoices = true;
 							}
 						}while(exitChoices == false);
 						List<String> c1 = new ArrayList<String>();
@@ -70,9 +78,13 @@ public class Test extends Survey {
 							String toContinue = reader.nextLine();
 							c1.add(correctc1);
 							c2.add(correctc2);
-							if(toContinue == "Y")
+							if(toContinue.equals("Y"))
 							{
 								exitChoices = false;
+							}
+							else 
+							{
+								exitChoices = true;
 							}
 							i++;
 						}while(exitChoices == false);
@@ -94,9 +106,13 @@ public class Test extends Survey {
 							column2.add(reader.nextLine());
 							System.out.println("Enter Y to add more choices, Enter N to finish this question");
 							String toContinue = reader.nextLine();
-							if(toContinue == "Y")
+							if(toContinue.equals("Y"))
 							{
 								exitChoices = false;
+							}
+							else
+							{
+								exitChoices = true;
 							}
 						}while(exitChoices == false);
 						List<String> c1 = new ArrayList<String>();
@@ -112,9 +128,13 @@ public class Test extends Survey {
 							String toContinue = reader.nextLine();
 							c1.add(correctc1);
 							c2.add(correctc2);
-							if(toContinue == "Y")
+							if(toContinue.equals("Y"))
 							{
 								exitChoices = false;
+							}
+							else
+							{
+								exitChoices = true;
 							}
 						}while(exitChoices == false);
 						Answer correctAnswer = new MatchingAnswer(c1, c2);
@@ -125,7 +145,7 @@ public class Test extends Survey {
 		{
 						System.out.println("Please enter prompt");
 						String prompt = reader.nextLine();
-						System.out.println("Please the correct choice and choice index");
+						System.out.println("Please enter the correct choice and choice index");
 						System.out.println("Choice Text: ");
 						String cText = reader.nextLine();
 						System.out.println("Choice Int: ");

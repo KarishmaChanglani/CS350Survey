@@ -1,5 +1,7 @@
 package survey;
 
+import com.google.gson.JsonObject;
+
 public class MCQAnswer implements Answer {
 
 	String choiceText;
@@ -11,16 +13,19 @@ public class MCQAnswer implements Answer {
 		this.choiceText  = choiceText;
 	}
 	
+	public MCQAnswer() {
+	}
+
 	@Override
 	public String pprint() {
-		// TODO Auto-generated method stub
-		return "";
+		String output = "";
+		output+= this.choiceIndex+" "+this.choiceText;
+		return output;
 	}
 
 	@Override
 	public String jsonPrint() {
-		// TODO Auto-generated method stub
-		return "";
+		return "{ choiceText : "+getChoiceText()+","+"choiceIndex : "+ getChoiceIndex() +"}";
 	}
 	public String getChoiceText()
 	{
@@ -40,6 +45,12 @@ public class MCQAnswer implements Answer {
 	public void setChoiceText(int choiceIndex)
 	{
 		this.choiceIndex = choiceIndex;
+	}
+
+	@Override
+	public void load(JsonObject asJsonObject) {
+		choiceText = asJsonObject.get("choiceText").toString();
+		choiceIndex = Integer.parseInt(asJsonObject.get("choiceIndex").toString());
 	}
 	
 	

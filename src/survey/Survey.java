@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
 public class Survey {
 	
 	List<Question> questions = new ArrayList<Question>();
@@ -24,16 +28,9 @@ public class Survey {
 		BufferedWriter out = null;
 		try  
 		{
-		    FileWriter fstream = new FileWriter("out.txt", false); //true tells to append data.
+		    FileWriter fstream = new FileWriter(path, false); //true tells to append data.
 		    out = new BufferedWriter(fstream);
-		    String writeText = "{ type : survey; name: "+name+"questions: ["; 
-		    if(questions != null)	{
-		    	for(Question q: questions)
-		    	{
-		    		writeText += q.jsonPrint();
-		    	}
-			}
-		    writeText += "]}";
+		    String writeText = jsonPrint();
 		    out.write(writeText);
 		}
 		catch (IOException e)
@@ -75,9 +72,13 @@ public class Survey {
 							System.out.println("Enter Y to add more choices, Enter N to finish this question");
 							String toContinue = reader.nextLine();
 							choices.add(new MCQAnswer(cIndex, cText));
-							if(toContinue == "Y")
+							if(toContinue.equals("Y"))
 							{
 								exitChoices = false;
+							}
+							else
+							{
+								exitChoices = true;
 							}
 						}while(exitChoices == false);
 						q = new MCQQuestion(prompt, choices, correctAnswer);
@@ -93,9 +94,13 @@ public class Survey {
 							column2.add(reader.nextLine());
 							System.out.println("Enter Y to add more choices, Enter N to finish this question");
 							String toContinue = reader.nextLine();
-							if(toContinue == "Y")
+							if(toContinue.equals("Y"))
 							{
 								exitChoices = false;
+							}
+							else
+							{
+								exitChoices = true;
 							}
 						}while(exitChoices == false);	
 						q = new RankingQuestion(prompt, column2, correctAnswer);
@@ -157,10 +162,77 @@ public class Survey {
 			return output;
 		}
 		for (Question q : questions) {
-			output+= "\nQuestion "+questions.indexOf(q);
+			output+= "\nQuestion "+(questions.indexOf(q)+1);
 			output+= "\n"+q.pprint();
 		}
 		output+="\n";
 		return output;
 	}
-}
+	public String jsonPrint()
+	{
+		String output = "{ Name: \""+name+"\", Questions:[";
+		if(questions == null)
+		{
+			output+="]";
+			output+="}";
+			return output;
+		}
+		int i = 0;
+		for (Question q : questions) {
+			if ( i != 0 )
+			{
+				output += ",";
+			}
+			else 
+			{
+				i++;
+			}
+			output+= q.jsonPrint() ;
+		}
+		output+="]";
+		output+="}";
+		return output;
+	}
+	public void load(JsonObject json) {
+		System.out.println("Entered this");
+		name = json.get("Name").toString();
+		List<Question> temp = new ArrayList<Question>();
+		JsonArray ja = (JsonArray)json.get("Questions");
+		for(JsonElement e: ja)
+		{
+			Question q;
+			JsonObject jo = e.getAsJsonObject();
+			switch(jo.get("type").toString())
+			{ 
+			 case "MCQ":
+				 	q = new MCQQuestion();
+				 	q.load(jo);
+					break;
+			 case "Ranking": 
+				 	q = new RankingQuestion();
+				 	q.load(jo);
+				 	break;
+			 case "Matching":
+				 q = new MatchingQuestion();
+				 	q.load(jo);
+				 break;
+			 case "T/F": 
+				 q = new TAndFQuestion();
+				 	q.load(jo);
+				 break;
+			 case "Short": 
+				 q = new ShortQuestion();
+				 	q.load(jo);
+				 	break;
+
+			 case "Essay":
+				 q = new EssayQuestion();
+				 	q.load(jo);
+				 	break;
+			 default: 
+				 q = null;
+			}
+			temp.add(q);
+			}
+		}
+	}

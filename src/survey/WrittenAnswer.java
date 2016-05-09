@@ -1,5 +1,7 @@
 package survey;
 
+import com.google.gson.JsonObject;
+
 public class WrittenAnswer implements Answer {
 
 	String Text; 
@@ -10,16 +12,32 @@ public class WrittenAnswer implements Answer {
 		this.Text = Text;
 	}
 
+	public WrittenAnswer() {
+	}
+
 	@Override
 	public String pprint() {
-		// TODO Auto-generated method stub
-		return "";
+		return getText();
+	}
+
+	public String getText() {
+		return this.Text;
+	}
+	private int getLength() {
+		return this.characterLength;
 	}
 
 	@Override
 	public String jsonPrint() {
-		// TODO Auto-generated method stub
-		return "";
+		String output = "( text: "+getText();
+			   output += "characterLength: "+ getLength();
+			   output += "}";
+		return output;
 	}
 
+	@Override
+	public void load(JsonObject JsonObject) {
+		Text = JsonObject.get("text").toString();
+		characterLength = Integer.parseInt(JsonObject.get("characterLength").toString());
+	}
 }
