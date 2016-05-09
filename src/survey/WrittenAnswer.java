@@ -37,7 +37,7 @@ public class WrittenAnswer implements Answer {
 
 	@Override
 	public void load(JsonObject JsonObject) {
-		Text = JsonObject.get("text").toString();
-		characterLength = Integer.parseInt(JsonObject.get("characterLength").toString());
+		Text = JsonObject.get("text").getAsString();
+		characterLength = Integer.parseInt(JsonObject.get("characterLength").getAsString());
 	}
 }

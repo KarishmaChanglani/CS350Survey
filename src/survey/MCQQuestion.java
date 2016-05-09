@@ -25,6 +25,7 @@ public class MCQQuestion implements Question {
 
 	public MCQQuestion() {
 	}
+	
 	@Override
 	public String pprint() {
 		String output = "";
@@ -81,7 +82,7 @@ public class MCQQuestion implements Question {
 	}
 	@Override
 	public void load(JsonObject jo) {
-		prompt = jo.get("prompt").toString();
+		prompt = jo.get("prompt").getAsString();
 		JsonArray ja = (JsonArray)jo.get("choices");
 		List<Answer> choices = new ArrayList<Answer>();
 		for(JsonElement e: ja)
@@ -90,9 +91,14 @@ public class MCQQuestion implements Question {
 			a.load(e.getAsJsonObject());
 		}
 		this.choices = choices;
+		try{
 		Answer correctAnswer = new MCQAnswer();
 		correctAnswer.load((JsonObject)jo.get("correctAnswer"));
-		this.correctAnswer = correctAnswer;
+		this.correctAnswer = correctAnswer;}
+		catch(java.lang.NullPointerException e)
+		{
+			correctAnswer = null;
+		}
 		
 	}
 

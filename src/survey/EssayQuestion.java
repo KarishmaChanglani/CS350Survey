@@ -1,8 +1,9 @@
 package survey;
 
+import com.google.gson.JsonObject;
+
 public class EssayQuestion extends ShortQuestion {
 
-	String prompt;
 	public EssayQuestion(String prompt) {
 		super(prompt);
 	}
@@ -17,7 +18,7 @@ public class EssayQuestion extends ShortQuestion {
 
 	@Override
 	public String jsonPrint() {
-		return "{ type: \"Essay\", prompt: "+getPrompt()+"}";
+		return "{ type: \"Essay\", prompt: \""+getPrompt()+"\"}";
 	}
 
 	@Override
@@ -28,6 +29,10 @@ public class EssayQuestion extends ShortQuestion {
 	@Override
 	public String getPrompt() {
 		return prompt;
+	}
+	public void load(JsonObject jo)
+	{
+		super.load(jo);
 	}
 
 }

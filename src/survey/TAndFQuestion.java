@@ -2,6 +2,8 @@ package survey;
 
 import java.util.ArrayList;
 
+import com.google.gson.JsonObject;
+
 public class TAndFQuestion extends MCQQuestion  {
 	
 	public TAndFQuestion(String prompt, Answer correctAnswer) {
@@ -53,6 +55,10 @@ public class TAndFQuestion extends MCQQuestion  {
 		}
 		output += "}";
 		return output;
+	}
+	public void load(JsonObject jo)
+	{
+		super.load(jo);
 	}
 
 }

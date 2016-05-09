@@ -196,14 +196,15 @@ public class Survey {
 	}
 	public void load(JsonObject json) {
 		System.out.println("Entered this");
-		name = json.get("Name").toString();
+		name = json.get("Name").getAsString();
 		List<Question> temp = new ArrayList<Question>();
 		JsonArray ja = (JsonArray)json.get("Questions");
 		for(JsonElement e: ja)
 		{
 			Question q;
 			JsonObject jo = e.getAsJsonObject();
-			switch(jo.get("type").toString())
+			System.out.println(jo.get("type").getAsString());
+			switch(jo.get("type").getAsString())
 			{ 
 			 case "MCQ":
 				 	q = new MCQQuestion();

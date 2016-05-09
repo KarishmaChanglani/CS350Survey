@@ -1,6 +1,11 @@
-{ Name: "", Questions:[{ type: "T/F",prompt : "prompt"
+{ Name: "", Questions:[{ type: "T/F",prompt : "Entering a prompt"
 , choices : [{ choiceText : "True",choiceIndex : 1}
 ,{ choiceText : "False",choiceIndex : 2}
-]},{ type: "MCQ",prompt : "promp"
-, choices : [{ choiceText : "promp",choiceIndex : 1}
-]},{ type: "Short", prompt: promp},{ type: "Essay", prompt: null},{ type: "Ranking", prompt: prompt, Columns: [{ column1: "1",  column2: "p1"},{ column1: "2",  column2: "p2"},{ column1: "3",  column2: "p3"}]},{ type: "Matching", prompt: prop, Columns: [{ column1: "1",  column2: "one"},{ column1: "",  column2: "p2"}]}]}
+], correctAnswer: { choiceText : "choice ",choiceIndex : 1}},{ type: "MCQ",prompt : "Prompting a lot"
+, choices : [{ choiceText : "choice1",choiceIndex : 1}
+,{ choiceText : "choice2 ",choiceIndex : 2}
+], correctAnswer: { choiceText : "3",choiceIndex : 3}},
+{ type: "Essay", prompt: "Prompt"},
+{ type: "Short", prompt: "prompt", correctAnswer:{ text: "answer text", characterLength: 100}},
+{ type: "Ranking", prompt: "Ranking prompt", columns: [{ column1: "1",  column2: "one"}], correctAnswer:{ columns: [{ column1: "1",  column2: "one"}]}},
+{ type: "Matching", prompt: "Prompting is matching", columns: [{ column1: "1",  column2: "one"},{ column1: "2",  column2: "Two"}], correctAnswer:{ columns: [{ column1: "1",  column2: "one"},{ column1: "2",  column2: "two"}]}}]}

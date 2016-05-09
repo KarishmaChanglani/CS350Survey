@@ -57,14 +57,14 @@ public class MatchingQuestion implements Question {
 
 	@Override
 	public String jsonPrint() {
-		String output = "{ type: \"Matching\", prompt: "+getPrompt();
-		output += ", Columns: [";
+		String output = "{ type: \"Matching\", prompt: \""+getPrompt()+"\""; //type is purely added for using json in order to distinguish between question types
+		output += ", columns: [";
 		for (int i =0; i < column1.size(); i++)
 		{
 			
 			output += "{ column1: \""+ this.column1.get(i) + "\"," ;
 			output += "  column2: \""+ this.column2.get(i) + "\"}";
-			if (i < column1.size() - 1)
+			if (i < column1.size() - 1) //to make sure we don't have a trailing , at the end
 			{
 				output += ",";
 			}
@@ -89,21 +89,27 @@ public class MatchingQuestion implements Question {
 	}
 	@Override
 	public void load(JsonObject jo) {
-		prompt = jo.get("prompt").toString();
+		prompt = jo.get("prompt").getAsString();
 		JsonArray ja = (JsonArray)jo.get("columns");
 		List<String> column1 = new ArrayList<String>(); 
 		List<String> column2 = new ArrayList<String>();
 		for(JsonElement e: ja)
 		{
 			JsonObject json = e.getAsJsonObject();
-			column1.add(json.get("column1").toString());
-			column2.add(json.get("column2").toString());
+			column1.add(json.get("column1").getAsString());
+			column2.add(json.get("column2").getAsString());
 		}
 		this.column1 = column1;
 		this.column2 = column2;
+		try{
 		Answer correctAnswer = new MCQAnswer();
 		correctAnswer.load((JsonObject)jo.get("correctAnswer"));
 		this.correctAnswer = correctAnswer;
+		}
+		catch(java.lang.NullPointerException e)
+		{
+			correctAnswer = null;
+		}
 	}
 
 }

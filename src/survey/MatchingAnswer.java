@@ -10,7 +10,7 @@ import com.google.gson.JsonObject;
 
 public class MatchingAnswer implements Answer {
 
-	Map<String, String> choice = new HashMap<String, String>();
+	Map<String, String> choice = new HashMap<String, String>(); //This is the answer that you choose and is stored in this object
 	public MatchingAnswer(List<String> column1, List<String> column2)
 	{
 		try
@@ -41,7 +41,7 @@ public class MatchingAnswer implements Answer {
 		String output = "{ columns: [";
 		int i = 0;
 		for (Map.Entry<String, String> entry : choice.entrySet()) {
-		    if (i != 0)
+		    if (i != 0) //to make sure we don't have a trailing , at the end
 		    {
 		    	output += ",";
 		    }
@@ -65,7 +65,7 @@ public class MatchingAnswer implements Answer {
 		for(JsonElement e: ja)
 		{
 			JsonObject jo = e.getAsJsonObject();
-			choice.put(jo.get("column1").toString(), jo.get("column2").toString());
+			choice.put(jo.get("column1").getAsString(), jo.get("column2").getAsString());
 		}
 		this.choice = choice;
 	}

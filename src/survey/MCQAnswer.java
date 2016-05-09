@@ -49,8 +49,8 @@ public class MCQAnswer implements Answer {
 
 	@Override
 	public void load(JsonObject asJsonObject) {
-		choiceText = asJsonObject.get("choiceText").toString();
-		choiceIndex = Integer.parseInt(asJsonObject.get("choiceIndex").toString());
+		choiceText = asJsonObject.get("choiceText").getAsString();
+		choiceIndex = Integer.parseInt(asJsonObject.get("choiceIndex").getAsString());
 	}
 	
 	

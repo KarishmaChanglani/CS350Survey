@@ -30,7 +30,7 @@ public class ShortQuestion implements Question {
 
 	@Override
 	public String jsonPrint() {
-		String output = "{ type: \"Short\", prompt: "+getPrompt();
+		String output = "{ type: \"Short\", prompt: \""+getPrompt()+"\"";
 		if(correctAnswer != null)
 		{
 			output += ", correctAnswer:" + correctAnswer.jsonPrint(); 
@@ -50,10 +50,16 @@ public class ShortQuestion implements Question {
 	}
 	@Override
 	public void load(JsonObject jo) {
-		prompt = jo.get("prompt").toString();
+		prompt = jo.get("prompt").getAsString();
+		try{
 		Answer correctAnswer = new WrittenAnswer();
 		correctAnswer.load((JsonObject)jo.get("correctAnswer"));
 		this.correctAnswer = correctAnswer;		
+		}
+		catch(java.lang.NullPointerException e)
+		{
+			this.correctAnswer = null;
+		}
 	}
 
 }

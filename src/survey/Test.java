@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+//Load and save functions weren't added but are in fact inherited from Survey
 public class Test extends Survey {
 	@Override
 	public void addQuestion(String type)
@@ -72,7 +73,7 @@ public class Test extends Survey {
 						do
 						{
 							String correctc1 = ""+i;
-							System.out.println("Please enter the next correct column2 value");
+							System.out.println("Please enter the correct column2 value");
 							System.out.println("Column2 Text: ");
 							String correctc2 = reader.nextLine();
 							System.out.println("Enter Y to add more choices, Enter N to finish this question");
@@ -120,7 +121,7 @@ public class Test extends Survey {
 						List<String> c2 = new ArrayList<String>();
 						do
 						{
-							System.out.println("Please enter the next correct column1 and column2 value");
+							System.out.println("Please enter the correct column1 and column2 value");
 							System.out.println("Column1 Text: ");
 							String correctc1 = reader.nextLine();
 							System.out.println("Column2 Text: ");
